@@ -14,8 +14,12 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: |
+      - name: 更新版本号
+        run: |
+          git config --global user.email "3332664073@qq.com"
+          git config --global user.name "aizhiqian"
           npm version patch
-          npm publish
+
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
