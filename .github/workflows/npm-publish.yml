@@ -19,9 +19,10 @@ jobs:
           git config --global user.email "3332664073@qq.com"
           git config --global user.name "aizhiqian"
           npm version patch --no-git-tag-version
+          VERSION=$(node -p "require('./package.json').version")
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
           git add package.json
-          git commit -m "chore: release v$(node -p "require('./package.json').version")"
-          git push
+          git commit -m "Update version to $VERSION"
 
       - run: npm publish
         env:
