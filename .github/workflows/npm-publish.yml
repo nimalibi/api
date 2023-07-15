@@ -23,6 +23,7 @@ jobs:
           sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
           git add package.json
           git commit -m "Update version to $VERSION"
+          git push
 
       - run: npm publish
         env:
