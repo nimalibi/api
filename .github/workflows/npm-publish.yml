@@ -14,11 +14,14 @@ jobs:
         with:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
-      #- name: 更新版本号
-      #  run: |
-       #   git config --global user.email "3332664073@qq.com"
-       #   git config --global user.name "aizhiqian"
-        #  npm version patch
+      - name: 更新版本号
+        run: |
+          git config --global user.email "3332664073@qq.com"
+          git config --global user.name "aizhiqian"
+          npm version patch --no-git-tag-version
+          git add package.json
+          git commit -m "chore: release v$(node -p "require('./package.json').version")"
+          git push
 
       - run: npm publish
         env:
